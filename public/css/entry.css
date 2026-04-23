@@ -3,22 +3,31 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: conic-gradient(at 0% 0%, 
-        #0a1128, 
-        #121b3d, 
-        #1d2d50, 
-        #121b3d, 
-        #0a1128);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     justify-content: center;
     align-items: center;
+    position: relative;
+    background-color: #050914; 
+    background-image: 
+        linear-gradient(rgba(19, 59, 92, 0.3) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(19, 59, 92, 0.3) 2px, transparent 2px);
+    background-size: 50px 50px;
+    animation: retroScrolling 4s linear infinite;
+    overflow: hidden;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.8) 150%);
+    pointer-events: none;
 }
 
 header {
@@ -28,10 +37,102 @@ header {
     position: absolute;
     top: 50px;
     text-shadow: 6px 6px 0px #133b5caa;
+    z-index: 2;
 }
 
 form {
     display: flex;
+    z-index: 2;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 25px;
+    position: relative;
+    left: 0;
+    transition: left 0.5s ease-in-out;
+    z-index: 2;
+}
+
+.slide-out-left {
+    left: -150vw !important;
+}
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    right: -100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    transition: right 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.slide-in-center {
+    right: 50% !important;
+    transform: translate(50%, -50%) !important;
+}
+
+.retro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgba(19, 59, 92, 0.9);
+    padding: 40px;
+    border: 4px solid #ffffff;
+    box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.8);
+    font-family: "Press Start 2P", system-ui;
+    align-items: center;
+}
+
+.retro-form h2 {
+    color: #8566d9;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.retro-form input {
+    font-family: "VT323", monospace;
+    font-size: 28px;
+    padding: 10px;
+    border: 2px solid #ffffff;
+    background-color: #050914;
+    color: #ffffff;
+    outline: none;
+    width: 320px;
+}
+
+.retro-form input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.submit-btn {
+    background-color: #0dff15d8;
+    color: #050914;
+    margin-top: 10px;
+}
+
+.back-btn {
+    background-color: #ff000000;
+    color: #ffffff;
+}
+
+/* ortak özellikler */
+.submit-btn, .back-btn {
+    font-family: "Press Start 2P", system-ui;
+    font-size: 16px;
+    padding: 15px;
+    width: 100%;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.8);
+    transition: transform 0.1s;
+    outline: none;
 }
 
 .login-section {
@@ -46,13 +147,14 @@ form {
     font-size: 30px;
     font-weight: 800;
     font-family: "Press Start 2P", system-ui;
-    color: #27bc31;
-    background-color: #133b5c;
+    color: #8566d9;
+    background-color: rgba(19, 59, 92, 0.3);
     height: 100px;
     width: 280px;
     border: 4px solid #ffffff;
     border-radius: 0;
     box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.8);
+    transition: transform 0.1s;
 }
 
 .login-section:active {
@@ -60,10 +162,7 @@ form {
     box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.8);
 }
 
-.button-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    gap: 25px;
+@keyframes retroScrolling {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
 }

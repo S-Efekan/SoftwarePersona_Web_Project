@@ -3,24 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>OmniDesk</title>
     <link rel="stylesheet" href="/css/entry.css">
 </head>
 <body>
     <header>
         OmniDesk
     </header>
-    <div class="button-container">
-        <form action="/login" method="post">
-            <button type="submit" class="login-section">
-                Login
-            </button>
-        </form>
-        <form action="/register" method="post">
-            <button type="submit" class="login-section">
-                Register
-            </button>
+
+    <div class="button-container" id="main-buttons">
+        <button type="button" class="login-section" id="btn-login">
+            Login
+        </button>
+        <button type="button" class="login-section" id="btn-register">
+            Register
+        </button>
+    </div>
+
+    <div class="form-container" id="login-form-container">
+        <form action="/login" method="post" class="retro-form">
+            <h2>LOGIN</h2>
+            <input type="text" name="username" placeholder="USERNAME" required>
+            <input type="password" name="password" placeholder="PASSWORD" required>
+            <button type="submit" class="submit-btn">START</button>
+            <button type="button" class="back-btn">BACK</button>
         </form>
     </div>
+
+    <div class="form-container" id="register-form-container">
+        <form action="/register" method="post" class="retro-form">
+            <h2>REGISTER</h2>
+            <input type="text" name="username" placeholder="USERNAME" required>
+            <input type="password" name="password" placeholder="PASSWORD" required>
+            <input type="password" name="confirm_password" placeholder="CONFIRM" required>
+            <button type="submit" class="submit-btn">JOIN</button>
+            <button type="button" class="back-btn">BACK</button>
+        </form>
+    </div>
+
+    <script src="/javascript/entry.js"></script>
 </body>
 </html>

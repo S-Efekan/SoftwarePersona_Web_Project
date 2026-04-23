@@ -13,7 +13,7 @@ app.use(express.static("public"))
 // session management
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    reasave: false,
+    resave: false,
     saveUninitialized: true
 }))
 
@@ -24,14 +24,26 @@ app.get("/", (req,res) => {
     res.redirect("/entry")
 })
 
-app.get("/main")
-
 app.get("/entry", (req,res) => {
     res.render("entry")
 })
 
-const port = process.env.PORT || 3000
 
+app.post("/register", (req,res) => {
+
+})
+
+app.post("/login", (req,res) => {
+
+})
+
+
+
+
+
+
+/* Server port başlangıcı */
+const port = process.env.PORT || 3000
 app.listen(port || 3000, () => {
     console.log(`Server started running at port ${port}`)
 })

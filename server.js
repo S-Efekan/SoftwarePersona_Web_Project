@@ -1,14 +1,37 @@
-import express from express
+import express from "express"
+import db from "./db.js"
+import bcrypt from "bcrypt"
+import session from "express-session"
+import dotenv from "dotenv"
 
+
+dotenv.config()
 const app = express()
 app.set('view engine', 'ejs')
-const port = 3000
+app.use(express.static("public"))
+
+// session management
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    reasave: false,
+    saveUninitialized: true
+}))
 
 app.get("/", (req,res) => {
-    res.render("index")
+    if (req.session.isAuth) {
+        return res.render("main")
+    }
+    res.redirect("/entry")
 })
 
+app.get("/main")
 
-app.listen(port, () => {
+app.get("/entry", (req,res) => {
+    res.render("entry")
+})
+
+const port = process.env.PORT || 3000
+
+app.listen(port || 3000, () => {
     console.log(`Server started running at port ${port}`)
 })

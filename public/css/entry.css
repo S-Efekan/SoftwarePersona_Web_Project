@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: conic-gradient(at 0% 0%, 
+        #0a1128, 
+        #121b3d, 
+        #1d2d50, 
+        #121b3d, 
+        #0a1128);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    font-family: "VT323", monospace;
+    color: #ffffff;
+    font-size: 78px;
+    position: absolute;
+    top: 50px;
+    text-shadow: 6px 6px 0px #133b5caa;
+}
+
+form {
+    display: flex;
+}
+
+.login-section {
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 800;
+    font-family: "Press Start 2P", system-ui;
+    color: #27bc31;
+    background-color: #133b5c;
+    height: 100px;
+    width: 280px;
+    border: 4px solid #ffffff;
+    border-radius: 0;
+    box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.8);
+}
+
+.login-section:active {
+    transform: translate(4px, 4px);
+    box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.8);
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 25px;
+}

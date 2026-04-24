@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/entry.css">
+    <title>Yeni Not Ekle</title>
+</head>
+<body>
+    <div class="form-container" style="right: 50%; transform: translate(50%, -50%);">
+        <form action="/notes/add" method="post" class="retro-form">
+            <h2>YENİ NOT</h2>
+            <input type="text" name="title" placeholder="BAŞLIK" required>
+            <textarea name="content" placeholder="NOT İÇERİĞİ" required style="width: 320px; height: 150px; background: #050914; color: white; border: 2px solid white; font-family: 'VT323'; font-size: 20px; padding: 10px;"></textarea>
+            <input type="text" name="category" placeholder="KATEGORİ (Ders Adı vb.)">
+            <select name="status" style="width: 320px; padding: 10px; background: #050914; color: white; border: 2px solid white;">
+                <option value="Çalışılacak">Çalışılacak</option>
+                <option value="Tamamlandı">Tamamlandı</option>
+                <option value="Önemli">Önemli</option>
+            </select>
+            <button type="submit" class="submit-btn">KAYDET</button>
+            <a href="/notes/dashboard" class="back-btn" style="text-decoration: none; text-align: center;">İPTAL</a>
+        </form>
+    </div>
+</body>
+</html>

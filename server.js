@@ -3,6 +3,7 @@ import db from "./db.js"
 import bcrypt from "bcrypt"
 import session from "express-session"
 import dotenv from "dotenv"
+import notesRouter from "./routes/notes.js"
 
 
 dotenv.config()
@@ -10,13 +11,12 @@ const app = express()
 app.set('view engine', 'ejs')
 app.use(express.static("public"))
 app.use(express.urlencoded({extended: true})) /* Bu kısım gelen formları işleyebilmek için */
-
-// session management
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }))
+app.use("/notes", notesRouter)
 
 app.get("/", (req,res) => {
     if (req.session.isAuth) {
@@ -46,28 +46,31 @@ app.post("/register", async (req,res) => {
 
 app.post("/login", async (req,res) => {
     const {username, password} = req.body
+    
     if( username == 'test'){
         req.session.message = "Logged in as test user!"
         req.session.isAuth = true
-        return res.redirect("/")
+        req.session.userId = 1
+        return res.redirect("/notes/dashboard")
     }
 
     const [info] = await db.query("select * from users where username = ?", [username])
 
     if (info.length > 0) {
-        const user = info[0] /* 1 adet row dönmesini bekliyorum */
+        const user = info[0]
         const match = await bcrypt.compare(password, user.password)
         if(match) {
             req.session.isAuth = true
-            req.session.cookie.maxAge = 1000 * 60 * 15 /* 15 dakika boyunca oturum açık kalır */
-            return res.redirect("/")
+            req.session.userId = user.id
+            req.session.cookie.maxAge = 1000 * 60 * 15
+            return res.redirect("/notes/dashboard")
         } else {
             req.session.message = "Invalid password or username"
-            return res.redirect("/")
+            return res.redirect("/entry")
         }
     } else {
         req.session.message = "Invalid password or username"
-        return res.redirect("/")
+        return res.redirect("/entry")
     }
 })
 

@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <title>OmniDesk</title>
 </head>
 <body>
-    Main
+    <div class="sidebar">
+        <div style="font-weight: 600; margin-bottom: 20px; padding: 0 12px;">OmniDesk</div>
+        <a href="/notes/dashboard" class="sidebar-item">🏠 Dashboard</a>
+        <a href="/notes/new" class="sidebar-item">➕ Yeni Not</a>
+        <a href="/entry" class="sidebar-item">🚪 Çıkış</a>
+    </div>
+
+    <div class="main-content">
+        <div class="filter-bar">
+            <h1>Notlarım</h1>
+            <form action="/notes/dashboard" method="get" style="display: flex; gap: 10px;">
+                <input type="text" name="search" placeholder="Ara..." class="search-input" value="<%= search || '' %>">
+                <select name="status" style="border: none; background: #f7f6f3; padding: 0 10px; border-radius: 4px;">
+                    <option value="Hepsi">Tümü</option>
+                    <option value="Çalışılacak" <%= status === 'Çalışılacak' ? 'selected' : '' %>>Çalışılacak</option>
+                    <option value="Tamamlandı" <%= status === 'Tamamlandı' ? 'selected' : '' %>>Tamamlandı</option>
+                    <option value="Önemli" <%= status === 'Önemli' ? 'selected' : '' %>>Önemli</option>
+                </select>
+                <button type="submit" style="background: none; border: none; cursor: pointer; color: #2383e2; font-weight: 600;">Filtrele</button>
+            </form>
+        </div>
+
+        <div class="grid-container">
+            <% notes.forEach(note => { %>
+                <a href="/notes/edit/<%= note.id %>" class="note-card">
+                    <h3><%= note.title %></h3>
+                    <p><%= note.content %></p>
+                    <div style="margin-top: 10px; font-size: 12px; color: #aaa;">
+                        <%= note.category %> • <%= note.status %>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    </div>
 </body>
 </html>

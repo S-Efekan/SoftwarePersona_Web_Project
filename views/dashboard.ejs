@@ -16,15 +16,15 @@
     <div class="main-content">
         <div class="filter-bar">
             <h1>Notlarım</h1>
-            <form action="/notes/dashboard" method="get" style="display: flex; gap: 10px;">
+            <form action="/notes/dashboard" method="get" class="filter-form">
                 <input type="text" name="search" placeholder="Ara..." class="search-input" value="<%= search || '' %>">
-                <select name="status" style="border: none; background: #f7f6f3; padding: 0 10px; border-radius: 4px;">
+                <select name="status" class="filter-select">
                     <option value="Hepsi">Tümü</option>
                     <option value="Çalışılacak" <%= status === 'Çalışılacak' ? 'selected' : '' %>>Çalışılacak</option>
                     <option value="Tamamlandı" <%= status === 'Tamamlandı' ? 'selected' : '' %>>Tamamlandı</option>
                     <option value="Önemli" <%= status === 'Önemli' ? 'selected' : '' %>>Önemli</option>
                 </select>
-                <button type="submit" style="background: none; border: none; cursor: pointer; color: #2383e2; font-weight: 600;">Filtrele</button>
+                <button type="submit" class="filter-btn">Filtrele</button>
             </form>
         </div>
 

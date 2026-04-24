@@ -20,7 +20,7 @@ app.use("/notes", notesRouter)
 
 app.get("/", (req,res) => {
     if (req.session.isAuth) {
-        return res.render("dashboard")
+        return res.render("/notes/dashboard")
     }
     res.redirect("/entry")
 })
@@ -77,6 +77,6 @@ app.post("/login", async (req,res) => {
 
 /* Server port başlangıcı */
 const port = process.env.PORT || 3000
-app.listen(port || 3000, () => {
+app.listen(port, () => {
     console.log(`Server started running at port ${port}`)
 })

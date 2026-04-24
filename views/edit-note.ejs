@@ -2,41 +2,36 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/dashboard.css">
-    <title>Düzenle</title>
+    <link rel="stylesheet" href="/css/edit-note.css"> <title>Düzenle</title>
 </head>
 <body>
     <div class="sidebar">
-        <a href="/notes/dashboard" class="sidebar-item">⬅ Dashboard'a Dön</a>
+        <a href="/notes/dashboard" class="sidebar-item">⬅ Dashboard</a>
     </div>
 
     <div class="main-content">
-        <form action="/notes/update/<%= note.id %>" method="post" class="note-editor-container">
-            <input type="text" name="title" class="title-input" value="<%= note.title %>" placeholder="Başlıksız">
+        <form action="/notes/update/<%= note.id %>" method="post">
+            <input type="text" name="title" class="title-input" value="<%= note.title %>">
             
             <div class="meta-info">
                 <div class="meta-item">
                     <span>Kategori:</span>
-                    <input type="text" name="category" value="<%= note.category %>" style="border: none; outline: none; background: #f7f6f3; padding: 2px 6px; border-radius: 3px;">
-                </div>
+                    <input type="text" name="category" value="<%= note.category %>"> </div>
                 <div class="meta-item">
                     <span>Durum:</span>
-                    <select name="status" style="border: none; outline: none; background: #f7f6f3; padding: 2px 6px; border-radius: 3px;">
-                        <option value="Çalışılacak" <%= note.status === 'Çalışılacak' ? 'selected' : '' %>>Çalışılacak</option>
+                    <select name="status"> <option value="Çalışılacak" <%= note.status === 'Çalışılacak' ? 'selected' : '' %>>Çalışılacak</option>
                         <option value="Tamamlandı" <%= note.status === 'Tamamlandı' ? 'selected' : '' %>>Tamamlandı</option>
                         <option value="Önemli" <%= note.status === 'Önemli' ? 'selected' : '' %>>Önemli</option>
                     </select>
                 </div>
             </div>
 
-            <textarea name="content" class="content-area" placeholder="Yazmaya başlayın..."><%= note.content %></textarea>
-            
+            <textarea name="content" class="content-area"><%= note.content %></textarea>
             <button type="submit" class="save-btn">Değişiklikleri Kaydet</button>
         </form>
 
-        <form action="/notes/delete/<%= note.id %>" method="post" style="margin-top: 50px;">
-            <button type="submit" style="color: #eb5757; background: none; border: none; cursor: pointer; font-size: 14px;">Sayfayı Sil</button>
-        </form>
+        <form action="/notes/delete/<%= note.id %>" method="post">
+            <button type="submit" class="delete-btn">Sayfayı Sil</button> </form>
     </div>
 </body>
 </html>

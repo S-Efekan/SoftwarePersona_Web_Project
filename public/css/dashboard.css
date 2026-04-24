@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 * {
     margin: 0;
@@ -7,41 +7,51 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #ffffff;
-    color: #37352f;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #050914; /* Entry sayfasındaki koyu arka plan */
+    color: #e0e0e0;
     display: flex;
     min-height: 100vh;
+    background-image: 
+        linear-gradient(rgba(19, 59, 92, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(19, 59, 92, 0.15) 1px, transparent 1px);
+    background-size: 30px 30px; /* Arka planda hafif ızgara deseni */
 }
 
 .sidebar {
-    width: 240px;
-    background-color: #f7f6f3;
-    padding: 20px;
+    width: 250px;
+    background-color: rgba(10, 17, 34, 0.9);
+    padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    border-right: 1px solid rgba(55, 53, 47, 0.09);
+    gap: 15px;
+    border-right: 2px solid #133b5c;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    z-index: 10;
 }
 
 .sidebar-item {
-    padding: 8px 12px;
-    border-radius: 4px;
+    padding: 10px 15px;
+    border-radius: 0px;
     text-decoration: none;
-    color: #37352f;
-    font-size: 14px;
+    color: #a3a3a3;
+    font-size: 15px;
     font-weight: 500;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
 }
 
 .sidebar-item:hover {
-    background-color: rgba(55, 53, 47, 0.08);
+    background-color: rgba(133, 102, 217, 0.1);
+    color: #ffffff;
+    border-left: 3px solid #8566d9;
+    transform: translateX(5px);
 }
 
 .main-content {
     flex: 1;
     padding: 40px 60px;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     width: 100%;
 }
@@ -53,33 +63,56 @@ body {
 }
 
 .title-input {
-    font-size: 42px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 38px;
     font-weight: 700;
     border: none;
     outline: none;
-    color: #37352f;
+    color: #ffffff;
+    background: transparent;
     width: 100%;
     margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed #133b5c;
+    transition: border-color 0.3s;
 }
 
 .title-input::placeholder {
-    color: rgba(55, 53, 47, 0.15);
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.title-input:focus {
+    border-bottom-color: #8566d9;
 }
 
 .meta-info {
     display: flex;
     gap: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+    border-bottom: 1px solid #133b5c;
     margin-bottom: 20px;
 }
 
 .meta-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-size: 14px;
-    color: rgba(55, 53, 47, 0.6);
+    color: #8566d9;
+}
+
+.meta-item input, .meta-item select {
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(19, 59, 92, 0.3);
+    color: #ffffff;
+    border: 1px solid #133b5c;
+    padding: 6px 12px;
+    border-radius: 0;
+    outline: none;
+}
+
+.meta-item input:focus, .meta-item select:focus {
+    border-color: #8566d9;
 }
 
 .content-area {
@@ -90,55 +123,77 @@ body {
     resize: none;
     width: 100%;
     min-height: 500px;
-    font-family: inherit;
-    color: #37352f;
+    font-family: 'JetBrains Mono', monospace;
+    color: #e0e0e0;
+    background: transparent;
+}
+
+.content-area::placeholder {
+    color: rgba(255, 255, 255, 0.2);
 }
 
 .save-btn {
     position: fixed;
     bottom: 40px;
     right: 40px;
-    background-color: #2383e2;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: none;
+    background-color: #0dff15d8; /* Giriş sayfasındaki START butonu rengi */
+    color: #050914;
+    padding: 12px 24px;
+    border: 2px solid #ffffff;
     cursor: pointer;
-    font-weight: 500;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    font-weight: bold;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.8);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.save-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.8);
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    gap: 25px;
 }
 
 .note-card {
-    padding: 15px;
-    border: 1px solid rgba(55, 53, 47, 0.09);
-    border-radius: 8px;
+    padding: 20px;
+    background-color: rgba(10, 17, 34, 0.8);
+    border: 2px solid #133b5c;
+    border-radius: 0;
     text-decoration: none;
     color: inherit;
-    transition: background 0.2s;
+    transition: all 0.2s ease;
+    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
 }
 
 .note-card:hover {
-    background-color: rgba(55, 53, 47, 0.03);
+    border-color: #8566d9;
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 0.8);
 }
 
 .note-card h3 {
     font-size: 18px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(19, 59, 92, 0.5);
+    padding-bottom: 8px;
 }
 
 .note-card p {
     font-size: 14px;
-    color: rgba(55, 53, 47, 0.6);
+    color: #a3a3a3;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+    flex-grow: 1;
 }
 
 .filter-bar {
@@ -146,12 +201,65 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
+    background-color: rgba(10, 17, 34, 0.6);
+    padding: 15px 20px;
+    border: 1px solid #133b5c;
+}
+
+.filter-bar h1 {
+    color: #ffffff;
+    font-size: 24px;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+    text-transform: uppercase;
 }
 
 .search-input {
-    background: #f7f6f3;
-    border: none;
+    background: rgba(19, 59, 92, 0.3);
+    border: 1px solid #133b5c;
+    color: #ffffff;
+    font-family: 'JetBrains Mono', monospace;
     padding: 8px 12px;
-    border-radius: 4px;
+    border-radius: 0;
     width: 250px;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: rgba(255,255,255,0.3);
+}
+
+.search-input:focus {
+    border-color: #8566d9;
+}
+
+/* Form Seçiciler (Arama ve Filtreleme) */
+.filter-form {
+    display: flex; 
+    gap: 10px;
+}
+
+.filter-select {
+    background: rgba(19, 59, 92, 0.3);
+    border: 1px solid #133b5c;
+    color: #ffffff;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 8px 12px;
+    border-radius: 0;
+    outline: none;
+}
+
+.filter-btn {
+    color: #0dff15d8;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 8px 15px;
+    border: 1px solid #0dff15d8;
+    background: transparent;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background: rgba(13, 255, 21, 0.1);
+    box-shadow: 2px 2px 0px rgba(13, 255, 21, 0.3);
 }

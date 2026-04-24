@@ -20,7 +20,7 @@ app.use("/notes", notesRouter)
 
 app.get("/", (req,res) => {
     if (req.session.isAuth) {
-        return res.render("/notes/dashboard")
+        return res.redirect("/notes/dashboard")
     }
     res.redirect("/entry")
 })
@@ -39,8 +39,10 @@ app.post("/register", async (req,res) => {
     }
     
     const hashedPassword = await bcrypt.hash(password, 10)
-    await db.query("INSERT INTO users (username, password) VALUES (?,?,?)", [username, hashedPassword])
+    await db.query("INSERT INTO users (username, password) VALUES (?,?)", [username, hashedPassword])
     req.session.isAuth = true
+    const [info] = await db.query("select * from users where username = ?", [username])
+    req.session.userId = info[0].id
     res.redirect("/")
 })
 
@@ -50,7 +52,7 @@ app.post("/login", async (req,res) => {
     if( username == 'test'){
         req.session.message = "Logged in as test user!"
         req.session.isAuth = true
-        req.session.userId = 1
+        req.session.userId = 999
         return res.redirect("/notes/dashboard")
     }
 

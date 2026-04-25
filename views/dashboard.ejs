@@ -32,7 +32,9 @@
             <% notes.forEach(note => { %>
                 <a href="/notes/edit/<%= note.id %>" class="note-card">
                     <h3><%= note.title %></h3>
-                    <p><%= note.content %></p>
+                    <div class="note-card-content markdown-body">
+                        <%- renderMarkdown(note.content) %> 
+                    </div>
                     <div style="margin-top: 10px; font-size: 12px; color: #aaa;">
                         <%= note.category %> • <%= note.status %>
                     </div>

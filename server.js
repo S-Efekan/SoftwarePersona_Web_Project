@@ -4,11 +4,17 @@ import bcrypt from "bcrypt"
 import session from "express-session"
 import dotenv from "dotenv"
 import notesRouter from "./routes/notes.js"
+import { marked, Marked } from "marked"
+import sanitizeHtml from "sanitize-html"
 
 
 dotenv.config()
 const app = express()
 app.set('view engine', 'ejs')
+app.locals.renderMarkdown = (text) => {
+    const rawHTML = marked.parse(text)
+    return sanitizeHtml(rawHTML)
+}
 app.use(express.static("public"))
 app.use(express.urlencoded({extended: true})) /* Bu kısım gelen formları işleyebilmek için */
 app.use(session({

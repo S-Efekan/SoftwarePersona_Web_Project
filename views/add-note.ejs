@@ -2,20 +2,38 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/add-note.css"> <title>Yeni Not Ekle</title>
+    <link rel="stylesheet" href="/css/add-note.css"> 
+    <title>Yeni Not Ekle - OmniDesk</title>
 </head>
 <body>
-    <div class="form-container">
-        <form action="/notes/add" method="post" class="retro-form">
-            <h2>YENİ NOT</h2>
-            <input type="text" name="title" placeholder="BAŞLIK" required>
-            <textarea name="content" placeholder="NOT İÇERİĞİ" required></textarea> <input type="text" name="category" placeholder="KATEGORİ">
-            <select name="status"> <option value="Çalışılacak">Çalışılacak</option>
-                <option value="Tamamlandı">Tamamlandı</option>
-                <option value="Önemli">Önemli</option>
-            </select>
-            <button type="submit" class="submit-btn">KAYDET</button>
-            <a href="/notes/dashboard" class="back-btn">İPTAL</a> </form>
+    <div class="sidebar">
+        <div class="sidebar-logo">OmniDesk</div>
+        <a href="/notes/dashboard" class="sidebar-item">⬅ Dashboard'a Dön</a>
+    </div>
+
+    <div class="main-content">
+        <form action="/notes/add" method="post">
+            <input type="text" name="title" class="title-input" placeholder="NOT BAŞLIĞI" required autofocus>
+            
+            <div class="meta-info">
+                <div class="meta-item">
+                    <span>Kategori:</span>
+                    <input type="text" name="category" placeholder="Örn: Proje, Kişisel">
+                </div>
+                <div class="meta-item">
+                    <span>Durum:</span>
+                    <select name="status">
+                        <option value="Çalışılacak">Çalışılacak</option>
+                        <option value="Tamamlandı">Tamamlandı</option>
+                        <option value="Önemli">Önemli</option>
+                    </select>
+                </div>
+            </div>
+
+            <textarea name="content" class="content-area" placeholder="Not içeriğinizi buraya yazmaya başlayın..." required></textarea>
+            
+            <button type="submit" class="save-btn">KAYDET</button>
+        </form>
     </div>
 </body>
 </html>

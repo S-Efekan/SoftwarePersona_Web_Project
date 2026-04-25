@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/view-note.css">
+    <title><%= note.title %> - OmniDesk</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-logo">OmniDesk</div>
+        <a href="/notes/dashboard" class="sidebar-item">🏠 Dashboard</a>
+        <a href="/notes/edit/<%= note.id %>" class="sidebar-item edit-link">✏️ Notu Düzenle</a>
+        <form action="/notes/delete/<%= note.id %>" method="post" class="delete-form">
+            <button type="submit" class="sidebar-delete-btn">🗑️ Sayfayı Sil</button>
+        </form>
+    </div>
+
+    <div class="main-content">
+        <h1 class="view-title"><%= note.title %></h1>
+        
+        <div class="meta-info">
+            <div class="meta-item">
+                <span class="meta-label">Kategori:</span>
+                <span class="meta-value"><%= note.category || 'Genel' %></span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Durum:</span>
+                <span class="meta-value status-tag"><%= note.status %></span>
+            </div>
+        </div>
+
+        <div class="note-content markdown-body">
+            <%- renderMarkdown(note.content) %>
+        </div>
+    </div>
+</body>
+</html>

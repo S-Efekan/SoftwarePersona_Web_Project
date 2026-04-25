@@ -54,6 +54,15 @@ router.get("/edit/:id", isAuth, async (req, res) => {
     }
 })
 
+router.get("/view/:id", isAuth, async (req, res) => {
+    const [note] = await db.query("SELECT * FROM notes WHERE id = ? AND user_id = ?", [req.params.id, req.session.userId])
+    if (note.length > 0) {
+        res.render("view-note", { note: note[0] })
+    } else {
+        res.redirect("/notes/dashboard")
+    }
+})
+
 router.post("/update/:id", isAuth, async (req, res) => {
     const { title, content, category, status } = req.body
     await db.query(

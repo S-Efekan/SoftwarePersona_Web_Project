@@ -30,7 +30,7 @@
 
         <div class="grid-container">
             <% notes.forEach(note => { %>
-                <a href="/notes/edit/<%= note.id %>" class="note-card">
+                <a href="/notes/view/<%= note.id %>" class="note-card">
                     <h3><%= note.title %></h3>
                     <div class="note-card-content markdown-body">
                         <%- renderMarkdown(note.content) %> 

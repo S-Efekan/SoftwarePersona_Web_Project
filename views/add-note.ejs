@@ -29,11 +29,24 @@
                     </select>
                 </div>
             </div>
-
-            <textarea name="content" class="content-area" placeholder="Not içeriğinizi buraya yazmaya başlayın..." required></textarea>
-            
+            <div class="editor-wrapper">
+                <div id="ghost-div" class="ghost-div"></div>
+                
+                <textarea name="content" id="note-content" class="content-area" placeholder="Not içeriğinizi buraya yazmaya başlayın..." required><%= typeof note !== 'undefined' ? note.content : '' %></textarea>
+                
+                <div id="slash-menu" class="slash-menu hidden">
+                    <div class="menu-item active" data-md="# " data-offset="2"><span>H1</span> Başlık 1</div>
+                    <div class="menu-item" data-md="## " data-offset="3"><span>H2</span> Başlık 2</div>
+                    <div class="menu-item" data-md="### " data-offset="4"><span>H3</span> Başlık 3</div>
+                    <div class="menu-item" data-md="****" data-offset="2"><span>B</span> Kalın Yazı</div>
+                    <div class="menu-item" data-md="__" data-offset="1"><span>I</span> İtalik Yazı</div>
+                    <div class="menu-item" data-md="- " data-offset="2"><span>•</span> Liste</div>
+                    <div class="menu-item" data-md="```\n\n```" data-offset="4"><span>&lt;/&gt;</span> Kod Bloğu</div>
+                </div>
+            </div>            
             <button type="submit" class="save-btn">KAYDET</button>
         </form>
     </div>
+    <script src="/javascript/editor.js"></script>
 </body>
 </html>
